@@ -1,6 +1,7 @@
 package jp.co.sss.lms.controller;
 
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,16 +40,37 @@ public class AttendanceController {
 	 * @return 勤怠管理画面
 	 * @throws ParseException
 	 */
-	@RequestMapping(path = "/detail", method = RequestMethod.GET)
-	public String index(Model model) {
+    @RequestMapping(path = "/detail", method = RequestMethod.GET)
+    public String index(Model model) {
 
-		// 勤怠一覧の取得
-		List<AttendanceManagementDto> attendanceManagementDtoList = studentAttendanceService
-				.getAttendanceManagement(loginUserDto.getCourseId(), loginUserDto.getLmsUserId());
-		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
+        // Ⅰ. 勤怠一覧の取得
+        List<AttendanceManagementDto> attendanceManagementDtoList = studentAttendanceService
+                .getAttendanceManagement(loginUserDto.getCourseId(), loginUserDto.getLmsUserId());
+        model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
 
-		return "attendance/detail";
-	}
+        // Ⅱ. Task.25 - 過去日未入力チェック
+        boolean hasPastUnentered = checkPastUnentered(loginUserDto.getLmsUserId());
+        model.addAttribute("showPastUnenteredDialog", hasPastUnentered);
+
+        return "attendance/detail";
+    }
+
+    /**
+     * Task.25 - 過去日未入力チェック
+     */
+    private boolean checkPastUnentered(Integer integer) {
+        // 現在日付（LocalDate）
+        LocalDate currentDate = LocalDate.now();
+
+        // Service経由で件数取得
+        int unenteredCount = studentAttendanceService.getPastUnenteredCount(
+                integer,
+                Constants.DB_FLG_FALSE,
+                currentDate
+        );
+
+        return unenteredCount > 0;
+    }
 
 	/**
 	 * 勤怠管理画面 『出勤』ボタン押下

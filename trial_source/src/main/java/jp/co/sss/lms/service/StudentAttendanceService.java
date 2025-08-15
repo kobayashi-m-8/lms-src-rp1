@@ -1,6 +1,7 @@
 package jp.co.sss.lms.service;
 
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -332,6 +333,15 @@ public class StudentAttendanceService {
 		}
 		// 完了メッセージ
 		return messageUtil.getMessage(Constants.PROP_KEY_ATTENDANCE_UPDATE_NOTICE);
+	}
+
+	
+	/**
+     * Task.25 - 過去日未入力チェック
+     */
+	public int getPastUnenteredCount(Integer integer, short dbFlgFalse, LocalDate currentDate) {
+		// TODO 自動生成されたメソッド・スタブ
+		return 0;
 	}
 
 }

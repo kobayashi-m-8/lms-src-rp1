@@ -1,5 +1,6 @@
 package jp.co.sss.lms.mapper;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -65,4 +66,12 @@ public interface TStudentAttendanceMapper {
 	 */
 	Boolean update(TStudentAttendance tStudentAttendance);
 
+	/**
+	 *  Task.25 - 過去日未入力チェック
+	* 過去日の勤怠で出勤・退勤が未入力の件数を取得
+	*/
+	int getPastUnenteredCount(
+			@Param("userId") Integer userId,
+			@Param("dbFlg") short dbFlg,
+			@Param("currentDate") LocalDate currentDate);
 }

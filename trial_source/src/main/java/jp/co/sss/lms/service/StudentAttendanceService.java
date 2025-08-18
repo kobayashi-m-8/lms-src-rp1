@@ -335,13 +335,14 @@ public class StudentAttendanceService {
 		return messageUtil.getMessage(Constants.PROP_KEY_ATTENDANCE_UPDATE_NOTICE);
 	}
 
-	
 	/**
-     * Task.25 - 過去日未入力チェック
-     */
-	public int getPastUnenteredCount(Integer integer, short dbFlgFalse, LocalDate currentDate) {
-		// TODO 自動生成されたメソッド・スタブ
-		return 0;
-	}
+	 * Task.25 - 過去日未入力チェック
+	 */
+	public boolean hasPastUnentered(Integer userId) {
+		short dbFlgFalse = 0; // smallint型の未削除フラグ
+		LocalDate currentDate = LocalDate.now();
 
+		int count = tStudentAttendanceMapper.getPastUnenteredCount(userId, dbFlgFalse, currentDate);
+		return count > 0;
+	}
 }

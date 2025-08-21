@@ -337,9 +337,10 @@ public class StudentAttendanceService {
 
 	/**
 	 * Task.25 - 過去日未入力チェック
+	 * 小林
 	 */
 	public boolean hasPastUnentered(Integer userId) {
-		short dbFlgFalse = 0; // smallint型の未削除フラグ
+		short dbFlgFalse = 0;
 		LocalDate currentDate = LocalDate.now();
 
 		int count = tStudentAttendanceMapper.getPastUnenteredCount(userId, dbFlgFalse, currentDate);

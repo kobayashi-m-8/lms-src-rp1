@@ -109,8 +109,8 @@
 		SELECT COUNT(*)
 		FROM t_student_attendance
 		WHERE lms_user_id = #{userId}
-		AND delete_flg = #{dbFlg}  <!-- 0: 未削除 -->
-		AND training_date &lt; #{currentDate}  <!-- 過去日 -->
+		AND delete_flg = #{dbFlg}
+		AND training_date &lt; #{currentDate}
 		AND (
 		training_start_time IS NULL OR training_start_time = ''
 		OR

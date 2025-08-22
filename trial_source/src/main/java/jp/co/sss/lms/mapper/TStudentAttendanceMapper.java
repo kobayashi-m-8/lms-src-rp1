@@ -68,9 +68,13 @@ public interface TStudentAttendanceMapper {
 
 	/**
 	 *  Task.25 - 過去日未入力チェック
-	* 過去日の勤怠で出勤・退勤が未入力の件数を取得
+	 *  @author 小林
+	 *  @param userId
+	 *  @param dbFlg
+	 *  @param currentDate
+	 *  @return 出勤・退勤が未入力の件数
 	*/
-	int getPastUnenteredCount(
+	int notEnterCount(
 			@Param("userId") Integer userId,
 			@Param("dbFlg") short dbFlg,
 			@Param("currentDate") LocalDate currentDate);

@@ -48,6 +48,8 @@ public class AttendanceController {
 		model.addAttribute("attendanceManagementDtoList", attendanceManagementDtoList);
 		/**
 		 * Task.25 - 過去日未入力チェック
+		 * @author 小林
+		 * @return True or False
 		 */
 		boolean hasPastUnentered = studentAttendanceService.hasPastUnentered(loginUserDto.getLmsUserId());
 		model.addAttribute("showPastUnenteredDialog", hasPastUnentered);

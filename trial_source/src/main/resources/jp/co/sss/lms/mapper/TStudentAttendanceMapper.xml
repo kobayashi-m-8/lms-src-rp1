@@ -105,7 +105,7 @@
 	</update>
 
 	<!-- Task.25 - 過去日未入力チェック -->
-	<select id="getPastUnenteredCount" resultType="int">
+	<select id="notEnterCount" resultType="int">
 		SELECT COUNT(*)
 		FROM t_student_attendance
 		WHERE lms_user_id = #{userId}

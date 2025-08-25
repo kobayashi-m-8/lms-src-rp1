@@ -60,13 +60,18 @@
 									<td class="w140">[[${dailyAttendanceForm.dispTrainingDate}]]</td>
 									<td class="w300">[[${dailyAttendanceForm.sectionName}]]</td>
 									<td class="w70">
-										<input type="text" th:name="|attendanceList[${stat.index}].trainingStartTime|"
-											th:value="${dailyAttendanceForm.trainingStartTime}" class="form-control" />
-									</td>
-									<td class="w70">
-										<input type="text" th:name="|attendanceList[${stat.index}].trainingEndTime|"
-											th:value="${dailyAttendanceForm.trainingEndTime}" class="form-control" />
-									</td>
+<td class="w70">
+    <input type="time" th:name="|attendanceList[${stat.index}].trainingStartTime|"
+           th:value="${#temporals.format(dailyAttendanceForm.trainingStartTime, 'HH:mm')}" 
+           class="form-control" />
+</td>
+<td class="w70">
+    <input type="time" th:name="|attendanceList[${stat.index}].trainingEndTime|"
+           th:value="${#temporals.format(dailyAttendanceForm.trainingEndTime, 'HH:mm')}" 
+           class="form-control" />
+</td>
+
+
 									<td class="w80">
 										<select th:name="|attendanceList[${stat.index}].blankTime|"
 											class="form-control">

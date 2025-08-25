@@ -147,4 +147,59 @@ public class AttendanceUtil {
 		return false;
 	}
 
+	
+	/**
+	 * 時間(Hour)の選択肢マップを生成
+	 * 
+	 * @return 0〜23 時間のマップ
+	 */
+	public static LinkedHashMap<Integer, String> createHourMap() {
+		LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
+		map.put(null, ""); // 空選択肢
+		for (int i = 0; i < 24; i++) {
+			map.put(i, String.valueOf(i) + "時");
+		}
+		return map;
+	}
+
+	/**
+	 * 分(Minute)の選択肢マップを生成
+	 * 
+	 * @return 0〜59 分のマップ（5分刻み）
+	 */
+	public static LinkedHashMap<Integer, String> createMinuteMap() {
+		LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
+		map.put(null, ""); // 空選択肢
+		for (int i = 0; i < 60; i += 5) {
+			map.put(i, String.valueOf(i) + "分");
+		}
+		return map;
+	}
+
+	/**
+	 * 中抜け時間の選択肢マップを生成
+	 * 
+	 * @return 15分刻みの中抜け時間
+	 */
+	public static LinkedHashMap<Integer, String> createBlankTimeMap() {
+		LinkedHashMap<Integer, String> map = new LinkedHashMap<>();
+		map.put(null, ""); // 空選択肢
+		for (int i = 15; i < 480; i += 15) {
+			int hour = i / 60;
+			int minute = i % 60;
+			String time;
+			if (hour == 0) {
+				time = minute + "分";
+			} else if (minute == 0) {
+				time = hour + "時間";
+			} else {
+				time = hour + "時間" + minute + "分";
+			}
+			map.put(i, time);
+		}
+		return map;
+	}
+
+	
+	
 }

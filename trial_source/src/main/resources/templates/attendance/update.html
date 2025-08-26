@@ -59,17 +59,48 @@
 									</th:block>
 									<td class="w140">[[${dailyAttendanceForm.dispTrainingDate}]]</td>
 									<td class="w300">[[${dailyAttendanceForm.sectionName}]]</td>
-									<td class="w70">
-<td class="w70">
-    <input type="time" th:name="|attendanceList[${stat.index}].trainingStartTime|"
-           th:value="${#temporals.format(dailyAttendanceForm.trainingStartTime, 'HH:mm')}" 
-           class="form-control" />
-</td>
-<td class="w70">
-    <input type="time" th:name="|attendanceList[${stat.index}].trainingEndTime|"
-           th:value="${#temporals.format(dailyAttendanceForm.trainingEndTime, 'HH:mm')}" 
-           class="form-control" />
-</td>
+									
+									<!-- 出勤 -->
+									<td class="w140">
+										<select th:name="|attendanceList[${stat.index}].startHour|" class="form-control d-inline w60">
+											<option value="">--</option>
+											<option th:each="h : ${#numbers.sequence(0,23)}"
+													th:value="${h}"
+													th:text="${#strings.format('%02d',h)}"
+													th:selected="${dailyAttendanceForm.startHour} == ${h}">
+											</option>
+										</select>
+										：
+										<select th:name="|attendanceList[${stat.index}].startMinute|" class="form-control d-inline w60">
+											<option value="">--</option>
+											<option th:each="m : ${#numbers.sequence(0,59)}"
+													th:value="${m}"
+													th:text="${#strings.format('%02d',m)}"
+													th:selected="${dailyAttendanceForm.startMinute} == ${m}">
+											</option>
+										</select>
+									</td>
+
+									<!-- 退勤 -->
+									<td class="w140">
+										<select th:name="|attendanceList[${stat.index}].endHour|" class="form-control d-inline w60">
+											<option value="">--</option>
+											<option th:each="h : ${#numbers.sequence(0,23)}"
+													th:value="${h}"
+													th:text="${#strings.format('%02d',h)}"
+													th:selected="${dailyAttendanceForm.endHour} == ${h}">
+											</option>
+										</select>
+										：
+										<select th:name="|attendanceList[${stat.index}].endMinute|" class="form-control d-inline w60">
+											<option value="">--</option>
+											<option th:each="m : ${#numbers.sequence(0,59)}"
+													th:value="${m}"
+													th:text="${#strings.format('%02d',m)}"
+													th:selected="${dailyAttendanceForm.endMinute} == ${m}">
+											</option>
+										</select>
+									</td>
 
 
 									<td class="w80">

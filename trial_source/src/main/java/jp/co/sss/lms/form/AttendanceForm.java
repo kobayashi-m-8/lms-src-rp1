@@ -42,16 +42,16 @@ public class AttendanceForm {
     /** 日次の勤怠フォームリスト */
     private List<DailyAttendanceForm> attendanceList;
 
-    /** ポイント（小数点第1位まで表示） */
+    /** ポイント */
     private Double point;
 
-    /** 中抜け時間マップ（内部処理用） */
+    /** 中抜け時間マップ */
     private LinkedHashMap<Integer, String> blankTimeMap;
 
-    /** 時間マップ（内部処理用） */
+    /** 時間マップ */
     private LinkedHashMap<Integer, String> hourMap;
 
-    /** 分マップ（内部処理用） */
+    /** 分マップ */
     private LinkedHashMap<Integer, String> minuteMap;
 
     private LocalTime trainingStartTime;

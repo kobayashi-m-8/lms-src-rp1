@@ -89,6 +89,10 @@ public class AttendanceController {
 
     /**
      * 『勤怠情報を直接編集する』リンク
+     * Task26
+     * @author 小林
+     * @param model Spring MVC Model
+     * @return 勤怠編集画面ビュー名
      */
     @RequestMapping(path = "/update")
     public String update(Model model) {
@@ -109,7 +113,13 @@ public class AttendanceController {
     }
 
     /**
-     * 『更新』ボタン
+     * Task26
+     * @author 小林
+     * @param attendanceForm 勤怠編集フォーム
+     * @param model Spring MVC Model
+     * @param result バリデーション結果
+     * @return 勤怠管理画面ビュー名
+     * @throws ParseException 日付変換エラー
      */
     @RequestMapping(path = "/update", params = "complete", method = RequestMethod.POST)
     public String complete(AttendanceForm attendanceForm, Model model, BindingResult result)

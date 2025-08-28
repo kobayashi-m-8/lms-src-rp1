@@ -23,7 +23,7 @@
 		<div class="bs-component col-sm-12">
 
 			<form th:action="@{/attendance/update}" method="post">
-				
+
 				<!-- Task29 一覧のスクロール表示 -->
 				<!-- スクロール用のラッパー追加 -->
 				<div class="attendance-table-wrapper">
@@ -59,58 +59,64 @@
 									</th:block>
 									<td class="w140">[[${dailyAttendanceForm.dispTrainingDate}]]</td>
 									<td class="w300">[[${dailyAttendanceForm.sectionName}]]</td>
-						
-<!-- Task26 -->
-<td class="w140">
-    <div class="d-flex align-items-center">
-        <select th:name="|attendanceList[${stat.index}].startHour|" class="form-control w60 me-1">
-            <option value="">--</option>
-            <option th:each="h : ${#numbers.sequence(0,23)}"
-                    th:value="${h}"
-                    th:text="${T(java.lang.String).format('%02d', h)}"
-                    th:selected="${dailyAttendanceForm.startHour} == h">
-            </option>
-        </select>
-        <span>:</span>
-        <select th:name="|attendanceList[${stat.index}].startMinute|" class="form-control w60 ms-1">
-            <option value="">--</option>
-            <option th:each="m : ${#numbers.sequence(0,59)}"
-                    th:value="${m}"
-                    th:text="${T(java.lang.String).format('%02d', m)}"
-                    th:selected="${dailyAttendanceForm.startMinute} == m">
-            </option>
-        </select>
-    </div>
-</td>
 
-<!-- Task26 -->
-<td class="w140">
-    <div class="d-flex align-items-center">
-        <select th:name="|attendanceList[${stat.index}].endHour|" class="form-control w60 me-1">
-            <option value="">--</option>
-            <option th:each="h : ${#numbers.sequence(0,23)}"
-                    th:value="${h}"
-                    th:text="${T(java.lang.String).format('%02d', h)}"
-                    th:selected="${dailyAttendanceForm.endHour} == h">
-            </option>
-        </select>
-        <span>:</span>
-        <select th:name="|attendanceList[${stat.index}].endMinute|" class="form-control w60 ms-1">
-            <option value="">--</option>
-            <option th:each="m : ${#numbers.sequence(0,59)}"
-                    th:value="${m}"
-                    th:text="${T(java.lang.String).format('%02d', m)}"
-                    th:selected="${dailyAttendanceForm.endMinute} == m">
-            </option>
-        </select>
-    </div>
-</td>
+									<!-- Task26 -->
+									<td class="w140">
+										<div class="d-flex align-items-center" style="display: flex;">
+											<select th:name="|attendanceList[${stat.index}].startHour|"
+												class="form-control w100 me-1">
+												<option value="">--</option>
+												<option th:each="h : ${#numbers.sequence(0,23)}"
+													th:value="${T(java.lang.String).format('%02d', h)}"
+													th:text="${T(java.lang.String).format('%02d', h)}"
+													th:selected="${dailyAttendanceForm.startHour} eq ${T(java.lang.String).format('%02d', h)}">
+												</option>
+											</select>
+											<span>&nbsp;&nbsp;:&nbsp;&nbsp;</span>
+											<select th:name="|attendanceList[${stat.index}].startMinute|"
+												class="form-control w100 ms-1">
+												<option value="">--</option>
+												<option th:each="m : ${#numbers.sequence(0,59)}"
+													th:value="${T(java.lang.String).format('%02d', m)}"
+													th:text="${T(java.lang.String).format('%02d', m)}"
+													th:selected="${dailyAttendanceForm.startMinute} eq ${T(java.lang.String).format('%02d', m)}">
+												</option>
+											</select>
+										</div>
+									</td>
 
 
+									<!-- Task26 -->
+									<td class="w140">
+										<div class="d-flex align-items-center" style="display: flex;">
+											<select th:name="|attendanceList[${stat.index}].endHour|"
+												class="form-control w100 me-1">
+												<option value="">--</option>
+												<option th:each="h : ${#numbers.sequence(0,23)}"
+													th:value="${T(java.lang.String).format('%02d', h)}"
+													th:text="${T(java.lang.String).format('%02d', h)}"
+													th:selected="${dailyAttendanceForm.endHour} eq ${T(java.lang.String).format('%02d', h)}">
+												</option>
+											</select>
+											<span>&nbsp;&nbsp;:&nbsp;&nbsp;</span>
+											<select th:name="|attendanceList[${stat.index}].endMinute|"
+												class="form-control w100 ms-1">
+												<option value="">--</option>
+												<option th:each="m : ${#numbers.sequence(0,59)}"
+													th:value="${T(java.lang.String).format('%02d', m)}"
+													th:text="${T(java.lang.String).format('%02d', m)}"
+													th:selected="${dailyAttendanceForm.endMinute} eq ${T(java.lang.String).format('%02d', m)}">
+												</option>
+											</select>
+										</div>
+									</td>
 
 
 
-									<td class="w80">
+
+
+
+									<td class="w240">
 										<select th:name="|attendanceList[${stat.index}].blankTime|"
 											class="form-control">
 											<option th:each="blankTime : ${attendanceForm.blankTimes}"
